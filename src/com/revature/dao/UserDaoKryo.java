@@ -21,9 +21,9 @@ public class UserDaoKryo implements UserDao {
 	
 	private Kryo kryo = new Kryo();
 	
-	//private Logger log = Logger.getRootLogger();
+	private Logger log = Logger.getRootLogger();
 	
-	private static final String FOLDER_NAME = "users\\";
+	private static final String FOLDER_NAME = "src\\users\\";
 	
 	private static final String FILE_EXTENSION = ".dat";
 	
@@ -34,12 +34,21 @@ public class UserDaoKryo implements UserDao {
 	
 	@Override
 	public void createUser(User user) throws UserNameTaken{
-		try(FileOutputStream outputStream = new FileOutputStream(FOLDER_NAME+user.getUsername()+FILE_EXTENSION)) {
+		String fileName = FOLDER_NAME + user.getUsername() + FILE_EXTENSION;
+		File file = new File(fileName);
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				log.error("ERROR CREATING: " + fileName);
+			}
+		}
+		try(FileOutputStream outputStream = new FileOutputStream(fileName)) {
 			Output output = new Output(outputStream);
 			kryo.writeObject(output, user);
 			output.close();
 		} catch (FileNotFoundException e) {
-			//log.error("could not open file", e);
+			log.error("could not open file", e);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
