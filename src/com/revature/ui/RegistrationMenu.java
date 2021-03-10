@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import com.revature.pojo.User;
+import com.revature.pojo.Member;
 import com.revature.service.AuthService;
 
 public class RegistrationMenu implements Menu {
@@ -20,15 +20,18 @@ public class RegistrationMenu implements Menu {
 	
 	private AuthService authService;
 	
+	private Menu mainMenu;
+	
 	public RegistrationMenu() {
 		super();
 		
 	}
 	
-	public RegistrationMenu(Scanner scan, AuthService authService) {
+	public RegistrationMenu(Scanner scan, AuthService authService, Menu mainMenu) {
 		this();
 		this.setScanner(scan);
 		this.setAuthService(authService);
+		this.mainMenu = mainMenu;
 	}
 
 	@Override
@@ -42,30 +45,12 @@ public class RegistrationMenu implements Menu {
 		// TODO Auto-generated method stub
 		return prevMenu;
 	}
-
+	
 	@Override
-	public void display() {
-		User user = new User();
-		Random random = new Random();
-		System.out.println("Let me get to know you a bit");
-		System.out.println("What is your online handle?");
-		user.setUsername(scan.nextLine());
-		if (!authService.isExistingUser(user)) {
-			try {
-				authService.registerUser(user);
-				nextMenu = new LoginMenu();
-				List<String> descriptors = Collections.unmodifiableList(Arrays.asList("cool B)","cute ;)","dangerous >:)","quirky :D"));
-				System.out.println("I like that, very "+ descriptors.get(random.nextInt(descriptors.size())));
-			} catch (Exception e) {
-				System.out.println("Username taken, please try again");
-				nextMenu = prevMenu;
-			}
-		} else {
-			System.out.println("Username taken, please try again");
-			nextMenu = prevMenu;
-		}
+	public void setPreviousMenu(Menu prevMenu) {
+		this.prevMenu = prevMenu;
 	}
-
+	
 	@Override
 	public Scanner getScanner() {
 		// TODO Auto-generated method stub
@@ -84,6 +69,50 @@ public class RegistrationMenu implements Menu {
 	
 	public void setAuthService(AuthService authService) {
 		this.authService = authService;
+	}
+
+	@Override
+	public void display() {
+		Member memb = new Member();
+		Random random = new Random();
+		System.out.println("Let me get to know you a bit");
+		System.out.println("What is your online handle?");
+		memb.setUsername(scan.nextLine());
+		if (!authService.isExistingMember(memb.getUsername())) {
+			try {
+				List<String> descriptors = Collections.unmodifiableList(Arrays.asList("cool B)","cute ;)","dangerous >:)","quirky :D"));
+				System.out.println("I like that, very "+ descriptors.get(random.nextInt(descriptors.size())));
+				System.out.println("Tell me a bit about yourself");
+				memb.setBio(scan.nextLine());
+				System.out.println("Okay heres an easy one, how old are you?");
+				memb.setAge(Integer.parseInt(scan.nextLine()));
+				System.out.println("Sex? [M/F]");
+				memb.setSex(scan.nextLine());
+				System.out.println("Where are you, " + memb.getUsername() +"?");
+				memb.setLocation(scan.nextLine());
+				System.out.println("What are some of your interests? (exit to continue)");
+				String interest;
+				List<String> interests = new ArrayList<>();
+				do {
+					interest = scan.nextLine();
+					interests.add(interest);
+				} while (!interest.equalsIgnoreCase("exit"));
+				interests.remove(interests.size()-1);
+				//memb.setInterests(interests);
+				System.out.println("Finally lets get your password set");
+				memb.setSecretword(scan.nextLine());
+				authService.registerMember(memb);
+				((MainMenu) mainMenu).setActiveMember(authService.authenticateMember(memb));
+				nextMenu = mainMenu;
+			} catch (Exception e) {
+				System.out.println("Error creating user.");
+				e.printStackTrace();
+				nextMenu = prevMenu;
+			}
+		} else {
+			System.out.println("Are you sure you haven't been here before? (username in database)");
+			nextMenu = prevMenu;
+		}
 	}
 
 }

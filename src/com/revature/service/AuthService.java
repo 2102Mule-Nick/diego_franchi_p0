@@ -1,16 +1,24 @@
 package com.revature.service;
 
+import java.util.List;
+
 import com.revature.exception.InvalidPassword;
 import com.revature.exception.UserNameTaken;
 import com.revature.exception.UserNotFound;
-import com.revature.pojo.User;
+import com.revature.pojo.Member;
 
 public interface AuthService {
 	
-	public boolean isExistingUser(User user);
+	public boolean isExistingMember(String username);
 	
-	public User authenticateUser(User user) throws InvalidPassword, UserNotFound;
+	public Member authenticateMember(Member memb) throws InvalidPassword, UserNotFound;
 	
-	public User registerUser(User user) throws UserNameTaken;
+	public Member registerMember(Member memb) throws UserNameTaken;
+
+	public Member updateMember(Member memb);
+	
+	public List<Member> getAllMembers();
+	
+	public boolean removeMember(Member memb);
 
 }
