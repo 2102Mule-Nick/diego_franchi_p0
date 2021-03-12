@@ -16,14 +16,15 @@ public class WelcomeMenu implements Menu {
 	
 	public WelcomeMenu() {
 		super();
-		System.out.println("       .....           .....\r\n" + 
+		System.out.println(
+				"       .....           .....\r\n" + 
 				"   ,ad8PPPP88b,     ,d88PPPP8ba,\r\n" + 
 				"  d8P\"      \"Y8b, ,d8P\"      \"Y8b\r\n" + 
 				" dP'           \"8a8\"           `Yd\r\n" + 
 				" 8(              \"              )8\r\n" + 
 				" I8                             8I\r\n" + 
 				"  Yb,        Welcome to       ,dP\r\n" + 
-				"   \"8a,     cmdate.exe      ,a8\"\r\n" + 
+				"   \"8a,      cmdate.exe     ,a8\"\r\n" + 
 				"     \"8a,                 ,a8\"\r\n" + 
 				"       \"Yba             adP\"\r\n" + 
 				"         `Y8a         a8P'\r\n" + 

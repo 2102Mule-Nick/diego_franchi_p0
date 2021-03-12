@@ -92,14 +92,14 @@ public class LoginMenu implements Menu {
 			nextMenu = mainMenu;
 			//throw new Error();
 		} catch (UserNotFound e) {
-			log.error("Username does not exist.  Please register an account.");
+			System.out.println("Username does not exist.  Please register an account.");
 			nextMenu = prevMenu;
 		} catch (InvalidPassword e) {
 			log.error("Authentication error, InvalidPassword exception thrown");
 			System.out.println("check your password");
 			nextMenu = prevMenu;
 		} catch (Exception e) {
-			log.error("Sorry, something went wrong. Please try again later.", e);
+			System.out.println("Sorry, something went wrong. Please try again later.");
 			nextMenu = prevMenu;
 		}
 	}

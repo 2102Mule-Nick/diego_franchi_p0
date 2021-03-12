@@ -70,18 +70,19 @@ public class MainMenu implements Menu {
 				break;
 			case 2:
 				for (Member memb : authService.getAllMembers()) {
-					System.out.println(String.valueOf(memb.getMemberId())+" "+memb.getUsername());
+					System.out.printf("%-15s %s\n",memb.getUsername(),String.valueOf(memb.getAge())+"/"+memb.getSex()+"/"+memb.getLocation());
 				}
-				//get all user objects and syso fields
 				break;
 			case 3:
+				int count = 0;
 				for (Message msg : chatService.getMessages(activeMember)) {
-					System.out.println("SENT: "+msg.getDateTimeSent().toString() + " SUBJECT: " + msg.getSubject()+" MESSAGE: "+msg.getMessage());
+					System.out.printf("%-25s %-20s %-50s %s\n","SUBJECT: " + msg.getSubject(),"FROM: " + msg.getFrom(),"MESSAGE: "+ msg.getMessage(),"SENT: "+msg.getDateTimeSent().toString());
+					count++;
 				}
-				;
-				//get
+				System.out.println("TOTAL INBOX MESSAGES : "+count);
 				break;
 			case 4:
+				scan.nextLine();
 				Message msg = new Message();
 				msg.setFrom(activeMember.getUsername());
 				System.out.println("To: ");//to;
@@ -91,7 +92,11 @@ public class MainMenu implements Menu {
 				System.out.println("Message: ");//message;
 				msg.setMessage(scan.nextLine());
 				msg.setDateTimeSent(LocalDateTime.now());
-				chatService.sendMessage(msg);
+				if (chatService.sendMessage(msg)) {
+					System.out.println("Message Sent to "+msg.getTo()+"!");
+				} else {
+					System.out.println("Oops, try again :(");
+				}
 				break;
 			case 5:
 				//quit
@@ -101,7 +106,7 @@ public class MainMenu implements Menu {
 				System.out.println("Not an option. Try again.");
 				break;
 			}
-		} while (input != 4);
+		} while (input != 5);
 		
 	}
 

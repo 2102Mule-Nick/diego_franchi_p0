@@ -43,13 +43,13 @@ public class Driver {
 		((LoginMenu) loginMenu).setPreviousMenu(welcomeMenu);
 		
 		Menu activeMenu = welcomeMenu;
-	
-		//this menu loop will traverse all menus given that they store the next menu correctly
+
 		do {
 			activeMenu.display();
 			activeMenu = activeMenu.getNextMenu();
 		} while (activeMenu != null);
 		
+		scan.close();
 		System.out.println("Goodbye!");
 		
 	}

@@ -2149,3 +2149,112 @@ java.lang.NullPointerException
 2021-03-10 14:58:09 INFO  root:55 - getMessages in ChatServiceImpl called
 2021-03-10 14:58:09 TRACE root:35 - MessageDaoPostgres.getMessagesByUsername method called
 2021-03-10 14:58:09 INFO  root:42 - URL : jdbc:postgresql://localhost:5432/postgres?currentSchema=cmdate
+2021-03-10 15:00:54 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-10 15:00:55 INFO  root:80 - User found in DB
+2021-03-10 15:00:56 INFO  root:55 - getMessages in ChatServiceImpl called
+2021-03-10 15:00:56 TRACE root:35 - MessageDaoPostgres.getMessagesByUsername method called
+2021-03-10 15:00:56 INFO  root:42 - URL : jdbc:postgresql://localhost:5432/postgres?currentSchema=cmdate
+2021-03-11 10:44:36 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 10:49:23 TRACE root:64 - AuthServiceImpl.registerUser method called
+2021-03-11 10:49:23 TRACE root:26 - UserDaoPostgres.createMember method called
+2021-03-11 10:49:23 INFO  root:42 - URL : jdbc:postgresql://localhost:5432/postgres?currentSchema=cmdate
+2021-03-11 10:49:23 INFO  root:33 - insert into members (username, secretword, ages, sex, locations, bio) values ('orcness', 'ragecage', '22', 'M', 'Blasted Lands', 'orc smash, me like picnics');
+2021-03-11 10:49:23 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 10:49:24 INFO  root:80 - User found in DB
+2021-03-11 10:49:38 INFO  root:87 - getAllMembers in AuthServiceImpl called
+2021-03-11 10:49:38 TRACE root:101 - UserDaoPostgres.getAllMembers method called
+2021-03-11 10:49:38 INFO  root:42 - URL : jdbc:postgresql://localhost:5432/postgres?currentSchema=cmdate
+2021-03-11 10:49:41 INFO  root:55 - getMessages in ChatServiceImpl called
+2021-03-11 10:49:41 TRACE root:35 - MessageDaoPostgres.getMessagesByUsername method called
+2021-03-11 10:49:41 INFO  root:42 - URL : jdbc:postgresql://localhost:5432/postgres?currentSchema=cmdate
+2021-03-11 12:06:47 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 12:06:47 INFO  root:80 - User found in DB
+2021-03-11 12:06:57 INFO  root:55 - getMessages in ChatServiceImpl called
+2021-03-11 12:06:57 TRACE root:35 - MessageDaoPostgres.getMessagesByUsername method called
+2021-03-11 12:06:57 INFO  root:42 - URL : jdbc:postgresql://localhost:5432/postgres?currentSchema=cmdate
+2021-03-11 12:12:51 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 12:12:51 ERROR root:33 - trying to send to non-existant member
+2021-03-11 12:13:29 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 12:13:29 INFO  root:80 - User found in DB
+2021-03-11 12:13:31 INFO  root:55 - getMessages in ChatServiceImpl called
+2021-03-11 12:13:31 TRACE root:35 - MessageDaoPostgres.getMessagesByUsername method called
+2021-03-11 12:13:31 INFO  root:42 - URL : jdbc:postgresql://localhost:5432/postgres?currentSchema=cmdate
+2021-03-11 12:13:35 INFO  root:55 - getMessages in ChatServiceImpl called
+2021-03-11 12:13:35 TRACE root:35 - MessageDaoPostgres.getMessagesByUsername method called
+2021-03-11 12:13:35 INFO  root:42 - URL : jdbc:postgresql://localhost:5432/postgres?currentSchema=cmdate
+2021-03-11 12:13:38 INFO  root:87 - getAllMembers in AuthServiceImpl called
+2021-03-11 12:13:38 TRACE root:101 - UserDaoPostgres.getAllMembers method called
+2021-03-11 12:13:38 INFO  root:42 - URL : jdbc:postgresql://localhost:5432/postgres?currentSchema=cmdate
+2021-03-11 13:08:24 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 13:08:24 INFO  root:80 - User found in DB
+2021-03-11 13:08:27 INFO  root:55 - getMessages in ChatServiceImpl called
+2021-03-11 13:08:27 TRACE root:35 - MessageDaoPostgres.getMessagesByUsername method called
+2021-03-11 13:08:27 INFO  root:42 - URL : jdbc:postgresql://localhost:5432/postgres?currentSchema=cmdate
+2021-03-11 13:09:03 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 13:09:03 INFO  root:80 - User found in DB
+2021-03-11 13:10:42 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 13:10:42 INFO  root:80 - User found in DB
+2021-03-11 13:10:42 INFO  root:41 - getUserByUsername did not return null
+2021-03-11 13:10:42 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 13:10:42 INFO  root:80 - User found in DB
+2021-03-11 13:10:42 INFO  root:41 - getUserByUsername did not return null
+2021-03-11 13:10:42 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 13:10:42 INFO  root:80 - User found in DB
+2021-03-11 13:10:42 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 13:10:42 INFO  root:80 - User found in DB
+2021-03-11 13:10:42 INFO  root:41 - getUserByUsername did not return null
+2021-03-11 13:10:42 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 13:10:42 INFO  root:80 - User found in DB
+2021-03-11 13:10:42 INFO  root:40 - ChatServiceImpl.sendMessage -> from : 3 to : 2
+2021-03-11 13:10:42 TRACE root:66 - MessageDaoPostgres.sendMessage method called
+2021-03-11 13:10:42 INFO  root:42 - URL : jdbc:postgresql://localhost:5432/postgres?currentSchema=cmdate
+2021-03-11 13:10:43 INFO  root:78 - row succesfully added to table messages
+2021-03-11 13:11:22 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 13:11:23 INFO  root:80 - User found in DB
+2021-03-11 13:11:26 INFO  root:55 - getMessages in ChatServiceImpl called
+2021-03-11 13:11:26 TRACE root:35 - MessageDaoPostgres.getMessagesByUsername method called
+2021-03-11 13:11:26 INFO  root:42 - URL : jdbc:postgresql://localhost:5432/postgres?currentSchema=cmdate
+2021-03-11 13:16:31 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 13:16:32 ERROR root:102 - Sorry, something went wrong. Please try again later.
+java.lang.NullPointerException
+	at com.revature.service.AuthServiceImpl.authenticateMember(AuthServiceImpl.java:55)
+	at com.revature.ui.LoginMenu.display(LoginMenu.java:90)
+	at com.revature.Driver.main(Driver.java:48)
+2021-03-11 13:16:42 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 13:16:42 INFO  root:80 - User found in DB
+2021-03-11 13:16:42 ERROR root:98 - Authentication error, InvalidPassword exception thrown
+2021-03-11 13:16:52 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 13:16:52 INFO  root:80 - User found in DB
+2021-03-11 13:16:56 INFO  root:55 - getMessages in ChatServiceImpl called
+2021-03-11 13:16:56 TRACE root:35 - MessageDaoPostgres.getMessagesByUsername method called
+2021-03-11 13:16:56 INFO  root:42 - URL : jdbc:postgresql://localhost:5432/postgres?currentSchema=cmdate
+2021-03-11 13:18:55 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 13:18:56 INFO  root:80 - User found in DB
+2021-03-11 13:18:57 INFO  root:55 - getMessages in ChatServiceImpl called
+2021-03-11 13:18:57 TRACE root:35 - MessageDaoPostgres.getMessagesByUsername method called
+2021-03-11 13:18:57 INFO  root:42 - URL : jdbc:postgresql://localhost:5432/postgres?currentSchema=cmdate
+2021-03-11 13:46:57 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 13:47:45 TRACE root:64 - AuthServiceImpl.registerUser method called
+2021-03-11 13:47:45 TRACE root:26 - UserDaoPostgres.createMember method called
+2021-03-11 13:47:45 INFO  root:42 - URL : jdbc:postgresql://localhost:5432/postgres?currentSchema=cmdate
+2021-03-11 13:47:45 INFO  root:33 - insert into members (username, secretword, ages, sex, locations, bio) values ('test', '', '99', 'XXX', 'Memory Address x012380A', 'beep boop i am a robot');
+2021-03-11 13:47:45 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 13:47:45 INFO  root:80 - User found in DB
+2021-03-11 13:47:45 ERROR root:92 - Failure to connect to DB
+org.postgresql.util.PSQLException: The column name member_id was not found in this ResultSet.
+	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:2748)
+	at org.postgresql.jdbc.PgResultSet.getInt(PgResultSet.java:2626)
+	at com.revature.dao.MemberDaoPostgres.getMemberByUsername(MemberDaoPostgres.java:82)
+	at com.revature.service.AuthServiceImpl.authenticateMember(AuthServiceImpl.java:53)
+	at com.revature.ui.RegistrationMenu.display(RegistrationMenu.java:105)
+	at com.revature.Driver.main(Driver.java:48)
+2021-03-11 13:48:03 TRACE root:51 - UserDaoPostgres.getMemberByUsername method called
+2021-03-11 13:48:03 INFO  root:80 - User found in DB
+2021-03-11 13:48:03 ERROR root:92 - Failure to connect to DB
+org.postgresql.util.PSQLException: The column name member_id was not found in this ResultSet.
+	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:2748)
+	at org.postgresql.jdbc.PgResultSet.getInt(PgResultSet.java:2626)
+	at com.revature.dao.MemberDaoPostgres.getMemberByUsername(MemberDaoPostgres.java:82)
+	at com.revature.service.AuthServiceImpl.authenticateMember(AuthServiceImpl.java:53)
+	at com.revature.ui.LoginMenu.display(LoginMenu.java:90)
+	at com.revature.Driver.main(Driver.java:48)

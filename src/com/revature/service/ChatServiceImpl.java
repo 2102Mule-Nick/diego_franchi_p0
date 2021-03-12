@@ -31,23 +31,27 @@ public class ChatServiceImpl implements ChatService {
 	public boolean sendMessage(Message msg) {
 		if (!authService.isExistingMember(msg.getTo())) {
 			log.error("trying to send to non-existant member");
+			System.out.println("sorry, check browse menu for users to message");
 			return false;
 		}
+	
+		return messageDao.sendMessage(msg);
+		
 		//add logic to turn msg.from and msg.to from usernames to member_ids
-		try {
-			msg.setFrom(((AuthServiceImpl) authService).getMemberIdFromUsername(msg.getFrom()));
-			msg.setTo(((AuthServiceImpl) authService).getMemberIdFromUsername(msg.getTo()));
-			log.info("ChatServiceImpl.sendMessage -> from : "+ msg.getFrom() + " to : " + msg.getTo());
-			messageDao.sendMessage(msg);
-			return true;
-		} catch (UserNotFound e) {
-			log.error("ChatServiceImpl.sendMessage threw UserNotFound exception");
-			e.printStackTrace();
-		} catch (Exception e) {
-			log.error("ChatServiceImpl.sendMessage threw general exception");
-			e.printStackTrace();
-		}
-		return false;
+//		try {
+//			msg.setFrom(((AuthServiceImpl) authService).getMemberIdFromUsername(msg.getFrom()));
+//			msg.setTo(((AuthServiceImpl) authService).getMemberIdFromUsername(msg.getTo()));
+//			log.info("ChatServiceImpl.sendMessage -> from : "+ msg.getFrom() + " to : " + msg.getTo());
+//			messageDao.sendMessage(msg);
+//			return true;
+//		} catch (UserNotFound e) {
+//			log.error("ChatServiceImpl.sendMessage threw UserNotFound exception");
+//			e.printStackTrace();
+//		} catch (Exception e) {
+//			log.error("ChatServiceImpl.sendMessage threw general exception");
+//			e.printStackTrace();
+//		}
+//		return false;
 	}
 
 	@Override

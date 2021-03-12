@@ -38,19 +38,20 @@ public class MessageDaoPostgres implements MessageDao {
 
 		Connection conn = ConnectionFactoryPostgres.getConnection();
 		
-		String sql = "select * from messages";
+		String sql = "select * from messages where msg_to_username = ?";
 		
 		try {
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, username);
+			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Message msg = new Message();
 				msg.setMessageId(rs.getInt("msg_id"));;
-				msg.setFrom(String.valueOf(rs.getInt("msg_from_member_id")));//private String from;		
-				msg.setTo(String.valueOf(rs.getInt("msg_to_member_id")));
-				msg.setDateTimeSent(rs.getTimestamp("date_sent").toLocalDateTime());//private LocalDateTime dateSent;			
-				msg.setSubject(rs.getString("subject"));//private String subject;
-				msg.setMessage(rs.getString("msg"));//private String message;
+				msg.setFrom(String.valueOf(rs.getString("msg_from_username")));
+				msg.setTo(String.valueOf(rs.getString("msg_to_username")));
+				msg.setDateTimeSent(rs.getTimestamp("sent").toLocalDateTime());			
+				msg.setSubject(rs.getString("subject"));
+				msg.setMessage(rs.getString("msg"));
 				messages.add(msg);
 			}
 			conn.close();
@@ -69,8 +70,8 @@ public class MessageDaoPostgres implements MessageDao {
 		String sql = "insert into messages values (default,?,?,?,?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, Integer.valueOf(msg.getFrom()));
-			pstmt.setInt(2, Integer.valueOf(msg.getTo()));
+			pstmt.setString(1, msg.getFrom());
+			pstmt.setString(2, msg.getTo());
 			pstmt.setTimestamp(3, java.sql.Timestamp.valueOf(msg.getDateTimeSent()));
 			pstmt.setString(4, msg.getSubject());
 			pstmt.setString(5, msg.getMessage());

@@ -23,23 +23,28 @@ public class MemberDaoPostgres implements MemberDao {
 
 	@Override
 	public boolean createMember(Member memb) throws UserNameTaken {
-		log.trace("UserDaoPostgres.createMember method called");
+		log.trace("MemberDaoPostgres.createMember method called");
 		
 		Connection conn = ConnectionFactoryPostgres.getConnection();
 		
-		String sql = "insert into members (username, secretword, ages, sex, locations, bio) values ('" + 
-		memb.getUsername() + "', '" +memb.getSecretword() + "', '" + memb.getAge() + "', '"+memb.getSex() + "', '"+memb.getLocation() + "', '" + memb.getBio() +"');";
+		String sql = "insert into members (username, secretword, ages, sex, locations, bio) values (?,?,?,?,?,?)";
 		
 		log.info(sql);
 		
-		Statement stmt;
+		PreparedStatement pstmt;
 		try {
-			stmt = conn.createStatement();
-			stmt.executeUpdate(sql);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memb.getUsername());
+			pstmt.setString(2, memb.getSecretword());
+			pstmt.setInt(3, memb.getAge());
+			pstmt.setString(4, memb.getSex());
+			pstmt.setString(5, memb.getLocation());
+			pstmt.setString(6, memb.getBio());
+			pstmt.executeUpdate();
 			conn.close();
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			log.error("MemberDaoPostgres.createMember ERROR");
 			e.printStackTrace();
 		}
 		return false;
@@ -79,7 +84,6 @@ public class MemberDaoPostgres implements MemberDao {
 			while (rs.next()) {
 				log.info("User found in DB");
 				memb = new Member();
-				memb.setMemberId(rs.getInt("member_id"));
 				memb.setUsername(rs.getString("username"));
 				memb.setSecretword(rs.getString("secretword"));
 				memb.setAge(rs.getInt("ages"));
@@ -104,15 +108,17 @@ public class MemberDaoPostgres implements MemberDao {
 
 		Connection conn = ConnectionFactoryPostgres.getConnection();
 		
-		String sql = "select member_id,username from members";
+		String sql = "select username,ages,sex,locations from members";
 		
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				Member memb = new Member();
-				memb.setMemberId(rs.getInt("member_id"));
 				memb.setUsername(rs.getString("username"));
+				memb.setAge(rs.getInt("ages"));
+				memb.setSex(rs.getString("sex"));
+				memb.setLocation(rs.getString("locations"));
 				members.add(memb);
 			}
 			conn.close();
@@ -158,13 +164,14 @@ public class MemberDaoPostgres implements MemberDao {
 		
 		Connection conn = ConnectionFactoryPostgres.getConnection();
 		
-		String sql = "delete from members " + 
-					  "where username = '" + memb.getUsername() + "' and secretword = '" + memb.getSecretword() + "'";
+		String sql = "delete from members where username = ? and secretword = ?";
 		
-		Statement stmt;
+		PreparedStatement pstmt;
 		try {
-			stmt = conn.createStatement();
-			stmt.executeUpdate(sql);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memb.getUsername());
+			pstmt.setString(2, memb.getSecretword());
+			pstmt.executeUpdate();
 			conn.close();
 			return true;
 		} catch (SQLException e) {
@@ -174,5 +181,25 @@ public class MemberDaoPostgres implements MemberDao {
 		return false;
 
 	}
+	
+//	public String getUserameByMemberId(int memberId) {
+//		
+//		Connection conn = ConnectionFactoryPostgres.getConnection();
+//		
+//		String sql = "select * from members where member_id = ?";
+//		
+//		PreparedStatement pstmt;
+//		
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, String.valueOf(memberId));
+//			ResultSet rs = pstmt.executeQuery();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		return null;
+//	}
 
 }
